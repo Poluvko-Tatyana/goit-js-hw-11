@@ -21,7 +21,7 @@ function callback (entries, observer) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) { 
       observer.unobserve(entry.target)
-      onClickButton();
+      onClickButn();
     };
   });
 };
@@ -35,11 +35,11 @@ function onSubmit (evt) {
 
 searchQuery = input.value.trim();
  if (!searchQuery) return;
-  getImgParams(searchQuery);
+  getImg(searchQuery);
 };
 
 
-async function getImgParams(searchQuery) {
+async function getImg(searchQuery) {
   try {
     page = 1;
     const { hits: arrayOfImgs, totalHits } = await search(searchQuery, PER_PAGE, page);
@@ -76,7 +76,7 @@ function clearGallery() {
   gallery.innerHTML = "";
 };
 
-async function onClickButton() { 
+async function onClickButn() { 
   try { 
  page += 1;
     const { hits, totalHits } = await search(searchQuery, PER_PAGE, page);
