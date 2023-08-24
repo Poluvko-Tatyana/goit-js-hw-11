@@ -1,20 +1,4 @@
-/* :root {
-    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    --animation-duration: 250ms;
-  } */
-  
-  body {
-  background-color: rgb(221, 237, 244);
-  }
-  
-  /* :active,
-  :hover,
-  :focus {
-      outline: 0;
-      outline-offset: 0;
-  } */
-  
-  .gallery {
+ .gallery {
     display: grid;
     max-width: 1140px;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -25,21 +9,15 @@
   }
   
   .photo-card {
-    position: relative;
-  background-color: white;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  position: relative;
+  background-color: #e5ebee;
   }
   
-  .gallery__image:hover {
-    transform: scale(1.03);
-  }
   
   .gallery__image {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    transition: transform var(--animation-duration) var(--timing-function);
   }
   
   .gallery__link {
@@ -53,21 +31,26 @@
   .gallery__link:hover {
     cursor: zoom-in;
   }
-  
+  .info{
+    padding-left: 20px;
+  }
   .is-hidden {
       display: none;
   }
   
   .search-form{
-      display: block;
-      padding-top: 50px;
-      padding-bottom: 50px;
+      display: flex;
+      justify-content: center;
+      align-items:baseline;
+      gap: 20px;
+      padding-top: 30px;
+      padding-bottom: 30px;
       margin-bottom: 20px;
+      background-color: rgb(221, 237, 244);
   }
   
   .search-button {
   display: block;
-  margin: 0 auto;
   background-color: #4cb8ea;
   border-radius: 8px;
   border-style: none;
@@ -76,34 +59,21 @@
   cursor: pointer;
   font-size: 20px;
   font-weight: 500;
-  height: 50px;
+  height: 40px;
   line-height: 20px;
   list-style: none;
   outline: none;
   padding: 10px 16px;
-  position: relative;
   text-align: center;
   text-decoration: none;
-  transition: color 100ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
   }
       
-  
-  
   .search-input {
       display: block;
-      margin: 0 auto 20px auto;
       padding-top: 20px;
       padding-bottom: 20px;
       padding-left: 20px;
-      appearance: auto;
-      min-width: 30px;
-      border: 1.5px solid var(--white-color);
+      min-width: 100px;
+      border: 1.5px solid #4cb8ea;
       border-radius: 4px;
-  }
-
-  .info-item {
-      text-align: center;
   }

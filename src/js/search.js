@@ -4,7 +4,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '39007654-4c0430d32326a82f4d20f66f9';
 
 
-export const search = async (searchQuery, per_page = 40, page = 1) => {
+export const search = async (searchQuery, PER_PAGE = 40, page = 1) => {
   
 const {data} = await axios.get(BASE_URL, {
   params:{
@@ -14,7 +14,7 @@ const {data} = await axios.get(BASE_URL, {
     safesearch: 'true',
     q: searchQuery,
     page,
-    per_page: per_page,
+    per_page: PER_PAGE,
   }
 })
 

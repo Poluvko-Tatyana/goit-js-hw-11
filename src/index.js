@@ -1,7 +1,7 @@
 import { Notify } from 'notiflix';
 import SimpleLightbox from "simplelightbox";
 
-import { fetchImgs } from "./js/search";
+import { search } from "./js/search";
 import { createMarkup } from "./js/markup";
 
 import "simplelightbox/dist/simple-lightbox.min.css";
@@ -10,7 +10,8 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 const form = document.getElementById("search-form");
 const gallery = document.querySelector(".gallery");
 const input = form.elements.searchQuery;
-const buttonLoadMore = document.querySelector(".load-more");
+
+let lightbox = new SimpleLightbox('.gallery a');
 
 let searchQuery = "";
 const PER_PAGE = 40;
@@ -24,24 +25,24 @@ function callback (entries, observer) {
     };
   });
 };
- console.log(callback)
+
 const observer = new IntersectionObserver(callback);
 
-let lightbox = new SimpleLightbox('.gallery a');
+form.addEventListener("submit", onSubmit)
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+function onSubmit (evt) {
+  evt.preventDefault();
 
 searchQuery = input.value.trim();
  if (!searchQuery) return;
   getImgParams(searchQuery);
-});
+};
 
 
 async function getImgParams(searchQuery) {
   try {
     page = 1;
-    const { hits: arrayOfImgs, totalHits } = await fetchImgs(searchQuery, PER_PAGE, page);
+    const { hits: arrayOfImgs, totalHits } = await search(searchQuery, PER_PAGE, page);
 
     if (arrayOfImgs.length === 0) {
       Notify.failure("Sorry, there are no images matching your search query. Please try again.");
@@ -53,7 +54,6 @@ async function getImgParams(searchQuery) {
     clearGallery();
 
     const markup = createMarkup(arrayOfImgs);
-    console.log(markup)
 
     renderGallery(markup);
 
@@ -64,7 +64,7 @@ async function getImgParams(searchQuery) {
 
   }
   catch (error) {
-    Notify.failure("SSSSorry, there are no images matching your search query. Please try again.");
+    Notify.failure("Sorry, there are no images matching your search query. Please try again.");
   }
 };  
 
@@ -79,7 +79,7 @@ function clearGallery() {
 async function onClickButton() { 
   try { 
  page += 1;
-    const { hits, totalHits } = await fetchImgs(searchQuery, PER_PAGE, page);
+    const { hits, totalHits } = await search(searchQuery, PER_PAGE, page);
     
     const markup = createMarkup(hits);
 
